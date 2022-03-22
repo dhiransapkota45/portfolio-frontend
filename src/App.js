@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import Navbar from "./components/Navbar/Navbar";
+import Login from "./components/Login/Login";
+
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./Home";
+import Admin from "./components/Admin/Admin"
+import { useState } from "react";
 
 function App() {
+  const [authToken, setAuthToken] = useState(false)
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Navbar />
+
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login authToken={authToken} setAuthToken={setAuthToken}/>} />
+          <Route path="/admin" element={<Admin authToken={authToken} setAuthToken={setAuthToken}/>} />
+
+        </Routes>
+      </Router>
     </div>
   );
 }

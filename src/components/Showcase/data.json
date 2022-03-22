@@ -1,0 +1,24 @@
+{
+    "dataArray":[
+        {
+            "image":"GiFilmProjector",
+            "number":200,
+            "text":"Total Projects"
+        },
+        {
+            "image":"BiHappyBeaming",
+            "number":200,
+            "text":"Total Projects"
+        },
+        {
+            "image":"BsFillCalendar2DayFill",
+            "number":200,
+            "text":"Total Projects"
+        },
+        {
+            "image":"GiFilmProjector",
+            "number":200,
+            "text":"Total Projects"
+        }
+    ]
+}

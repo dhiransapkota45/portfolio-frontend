@@ -1,0 +1,7 @@
+{
+    "logo":"logo image",
+    "navitems":[
+        "HOME", "ABOUT", "SERVICE", "PORTFOLIO", "TESTIMONIAL", "BLOG", "CONTACT"
+    ],
+    "login":"Login"
+}

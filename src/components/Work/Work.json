@@ -1,0 +1,29 @@
+{
+    "cards": [
+        {
+            "logo": "logo",
+            "title":"Web Design",
+            "description":"There are many variations of pssages of Lorm available, bu in some form, Lorem Ipsum is simply dummy text."
+        },
+        {
+            "logo": "logo",
+            "title":"Developement",
+            "description":"There are many variations of pssages of Lorm available, bu in some form, Lorem Ipsum is simply dummy text."
+        },
+        {
+            "logo": "logo",
+            "title":"Marketing",
+            "description":"There are many variations of pssages of Lorm available, bu in some form, Lorem Ipsum is simply dummy text."
+        },
+        {
+            "logo": "logo",
+            "title":"Strategy",
+            "description":"There are many variations of pssages of Lorm available, bu in some form, Lorem Ipsum is simply dummy text."
+        },
+        {
+            "logo": "logo",
+            "title":"Support",
+            "description":"There are many variations of pssages of Lorm available, bu in some form, Lorem Ipsum is simply dummy text."
+        }
+    ]
+}
