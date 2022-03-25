@@ -1,6 +1,6 @@
 import React from 'react'
 import About from "./components/About/About"
-
+import Navbar from './components/Navbar/Navbar';
 import Work from "./components/Work/Work";
 // import Eachdata from "./components/Showcase/Eachdata";
 import Showcase from "./components/Showcase/Showcase";
@@ -12,7 +12,9 @@ import Footer from "./components/Footer/Footer";
 
 const Home = () => {
     return (
-        <div> <About />
+        <div> 
+            <Navbar />
+            <About />
             <Work />
             {/* <Showcase /> */}
             <Carousel />

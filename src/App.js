@@ -1,18 +1,22 @@
-import Navbar from "./components/Navbar/Navbar";
-import Login from "./components/Login/Login";
-
+//React Router
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+//state
+import { useState } from "react";
+
+//components
+import Navbar2 from "./components/Navbar/Navbar2";
+import Login from "./components/Login/Login";
 import Home from "./Home";
 import Admin from "./components/Admin/Admin"
-import { useState } from "react";
 
 function App() {
   const [authToken, setAuthToken] = useState(false)
   
   return (
-    <div className="App">
+    <div className=" scroll-smooth">
       <Router>
-        <Navbar />
+        <Navbar2/>
 
         <Routes>
           <Route path="/" element={<Home />} />

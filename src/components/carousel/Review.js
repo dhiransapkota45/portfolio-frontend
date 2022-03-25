@@ -7,6 +7,10 @@ const Review = () => {
     const { reviews } = review
     const [reviewStateIndex, setReviewStateIndex] = useState(0)
 
+    // setInterval(() => {
+    //     setReviewStateIndex((reviewStateIndex+1)%reviews.length)
+    // }, 3000);
+
     // const gotoNext = () => {
     //     if (reviewStateIndex === reviews.length - 1) {
     //         setReviewStateIndex(0)

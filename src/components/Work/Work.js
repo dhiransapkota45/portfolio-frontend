@@ -4,7 +4,7 @@ import Card from './Card'
 
 const Work = () => {
     return (
-        <div className='flex justify-center bg-gray-100' id='SERVICE'>
+        <div  className='flex justify-center bg-gray-100' id='service'>
             <div className='w-4/5 flex flex-col items-center mt-12'>
                 <div className=' font-sans font-bold text-3xl'>
                     What I'm doing
