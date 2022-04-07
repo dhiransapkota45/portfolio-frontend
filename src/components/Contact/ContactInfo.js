@@ -5,7 +5,7 @@ import { AiOutlineMail } from "react-icons/ai"
 import { SiWeblate } from "react-icons/si"
 
 
-const ContactInfo = () => {
+const ContactInfo = ({contactInfo}) => {
     return (
 
         <div className='flex flex-col  w-72'>
@@ -15,25 +15,25 @@ const ContactInfo = () => {
             <div className='flex mb-4'>
                 <HiOutlineLocationMarker className='text-4xl mr-6' />
                 <span className='text-gray-500'>
-                    Address: Z105 - Tan Thinh, Thai Nguyen - Viet Nam</span>
+                    {contactInfo.address}</span>
             </div>
             <div className='flex mb-4'>
                 <IoIosCall className='mr-6 text-3xl' />
                 <span className='text-gray-500'>
-                    Phone: +1.900.3456.789
+                {contactInfo.phone}
                 </span>
             </div>
             <div className='flex mb-4'>
                 <AiOutlineMail className='mr-6 text-3xl' />
                 <span className='text-gray-500'>
 
-                    Email: yourname@somemail.com</span>
+                    Email: {contactInfo.email}</span>
             </div>
             <div className='flex mb-4'>
                 <SiWeblate className='mr-6 text-3xl' />
                 <span className='text-gray-500'>
 
-                    Website: http://example.com</span>
+                    Website: {contactInfo.website}</span>
             </div>
         </div>
 

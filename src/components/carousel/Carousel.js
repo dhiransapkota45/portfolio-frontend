@@ -3,7 +3,7 @@ import Review from './Review'
 
 const Carousel = () => {
     return (
-        <div className='bg-gradient-to-r from-cyan-500 to-blue-500 h-96 flex flex-col justify-center items-center'>
+        <div className=' mb-16 bg-gradient-to-r from-gray-900 to-gray-700 h-96 flex flex-col justify-center items-center'>
 
             <Review />
 

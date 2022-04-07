@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import review from "./Review.json"
 import { BsFillCircleFill } from "react-icons/bs"
 // import { AiFillCaretLeft, AiFillCaretRight } from "react-icons/ai"
@@ -11,6 +11,12 @@ const Review = () => {
     //     setReviewStateIndex((reviewStateIndex+1)%reviews.length)
     // }, 3000);
 
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setReviewStateIndex((reviewStateIndex+1)%reviews.length);
+        }, 3000);
+        return () => clearInterval(interval);
+      }, [reviewStateIndex]);
     // const gotoNext = () => {
     //     if (reviewStateIndex === reviews.length - 1) {
     //         setReviewStateIndex(0)

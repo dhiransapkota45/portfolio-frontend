@@ -1,0 +1,5 @@
+{
+    "updateProfileDetail":["title1", "title2", "title3", "facebookUrl", "twitterUrl", "instagramUrl", "youtubeUrl"],
+    "updateAbout":["aboutRole", "description", "aboutImage"]
+
+}
