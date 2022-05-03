@@ -1,67 +1,96 @@
-import {FaYoutube, FaFacebookF, FaTwitter, FaInstagramSquare } from "react-icons/fa";
-import { motion, useAnimation } from "framer-motion";
+import React, { useState, useEffect } from "react";
 
-const Navbar = ({ profileDetails }) => {
+import { GiHamburgerMenu } from "react-icons/gi";
+import { AiFillCloseCircle } from "react-icons/ai";
+
+//imported to change the color of navbar in different page
+import { useLocation } from "react-router-dom";
+
+const Navbar2 = () => {
+  //used while changing the background color of navbar in different pathname
+  const location = useLocation();
+
+  //logic for changing the color of navbar while scrolling the page
+  const [headerShown, setHeaderShown] = useState(false);
+  const handleScroll = (event) => {
+    const scrollY = event.currentTarget.scrollY;
+    setHeaderShown(scrollY > 80);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  //state to handle to show/hide the navbar in mobile view
+  const [open, setOpen] = useState(false);
+
+  const links = [
+    { name: "HOME", link: "#" },
+    { name: "ABOUT", link: "#about" },
+    { name: "SERVICE", link: "#service" },
+    { name: "LOCATION", link: "#location" },
+    { name: "GALLERY", link: "#gallery" },
+    { name: "CONTACT", link: "#contact" },
+  ];
+
   return (
-    <>
+    <div className="shadow-md w-full fixed top-0 left-0 z-20">
       <div
-        style={{
-          backgroundImage:
-            "url(/Untitled.jpeg)",
-        }}
-        className="h-screen bg-no-repeat bg-cover bg-center flex flex-col items-center justify-center"
+        className={`md:flex items-center justify-between duration-500 ${
+          location.pathname == "/"
+            ? headerShown && "bg-white"
+            : (!headerShown ? "bg-black" : "bg-gray-200")
+        } py-4 md:px-10 px-7`}
       >
-        <div className="flex flex-col  items-center">
-          <motion.div
-            className="font-sans text-white tracking-widest text-2xl opacity-20"
-            animate={{ y: -10, opacity: 1 }}
-            transition={{ ease: "easeOut", duration: 1 }}
-          >
-            {profileDetails.title1}
-          </motion.div>
-          <motion.div
-            className=" text-3xl font-mono font-bold text-white my-4 opacity-20"
-            animate={{ y: -10, opacity: 1 }}
-            transition={{ duration: 1 }}
-          >
-            {profileDetails.title2}
-          </motion.div>
-          <motion.div
-            className="text-white font-mono text-2xl tracking-wider text-center mb-6 opacity-20"
-            animate={{ y: -10, opacity: 1 }}
-            transition={{ duration: 1 }}
-          >
-            {profileDetails.title3}
-          </motion.div>
-          <div className="flex mb-8">
-            <div className="mx-4 text-3xl cursor-pointer border-2 text-white bg-gray-900 border-white rounded-full hover:bg-white hover:text-black duration-300 p-2">
-              <a target="_blank" href={profileDetails.facebookUrl}>
-                <FaFacebookF />
-              </a>
-            </div>
-            <div className="mx-4 text-3xl cursor-pointer border-2 text-white bg-gray-900 border-white rounded-full hover:bg-white hover:text-black duration-300 p-2">
-              <a target="_blank" href={profileDetails.twitterUrl}>
-                <FaTwitter />
-              </a>
-            </div>
-            <div className="mx-4 text-3xl cursor-pointer border-2 text-white bg-gray-900 border-white rounded-full hover:bg-white hover:text-black duration-300 p-2">
-              <a target="_blank" href={profileDetails.instagramUrl}>
-                <FaInstagramSquare />
-              </a>
-            </div>
-            <div className="mx-4 text-3xl cursor-pointer border-2 text-white bg-gray-900 border-white rounded-full hover:bg-white hover:text-black duration-300 p-2">
-              <a target="_blank" href={profileDetails.youtubeUrl}>
-                <FaYoutube />
-              </a>
-            </div>
-          </div>
+        <div
+          className={`w-16 rounded-full overflow-hidden cursor-pointer bg-white`}
+        >
+          <a href="#">
+            <img
+              src="profile.jpg"
+              alt="profile"
+              srcSet=""
+              className=" "
+            />
+          </a>
         </div>
+        <div
+          onClick={() => setOpen(!open)}
+          className={`text-3xl absolute right-8 top-6 cursor-pointer md:hidden ${
+            headerShown ? "text-gray-900" : "text-white"
+          }`}
+        >
+          {!open ? <GiHamburgerMenu /> : <AiFillCloseCircle />}
+        </div>
+        <ul
+          className={`md:flex md:items-center md:pb-0 pb-12 absolute md:static bg-white md:bg-transparent md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0 pl-9 transition-all duration-500 ease-in ${
+            open
+              ? "top-20 opacity-100"
+              : "top-[-490px] md:opacity-100 opacity-0"
+          }`}
+        >
+          {links.map((link) => {
+            return (
+              <li key={link.name} className="md:ml-8 text-xl md:my-0 my-7">
+                <a
+                  className={`${
+                    headerShown ? "md:text-gray-800" : "md:text-white"
+                  }  hover:text-gray-400 duration-500 cursor-pointer`}
+                  href={link.link}
+                >
+                  {link.name}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
       </div>
-    </>
+    </div>
   );
 };
 
-export default Navbar;
-
-//https://cdn.pixabay.com/photo/2021/08/27/12/18/forest-6578551_1280.jpg
-//https://cdn.pixabay.com/photo/2021/08/27/12/18/forest-6578551_1280.jpg
+export default Navbar2;

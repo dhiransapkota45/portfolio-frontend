@@ -3,64 +3,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Modal from "./Modal";
 import modalInput from "./modalInput.json";
-const baseUrl = "http://localhost:3002";
-
-const Message = ({ authToken, message }) => {
-  console.log(message, "hello");
-  const [markState, setMarkState] = useState(false);
-
-  const markonclickHandler = async () => {
-    const dataRaw = await fetch(
-      `${baseUrl}/contactformunreadmessage/${message._id}`,
-      {
-        method: "PUT",
-        headers: {
-          "content-type": "application/json",
-          authToken: authToken,
-        },
-        body: JSON.stringify({ mark: true }),
-      }
-    );
-    const data = await dataRaw.json();
-    setMarkState(data.success);
-  };
-  return (
-    <div key={message._id} className=" m-3 shadow-lg flex flex-col p-2">
-      <div className="text-2xl font-bold">
-        <span>Name:</span>
-        {message.name}
-      </div>
-      <div>
-        <span>Email:</span>
-        {message.email}
-      </div>
-      <div>
-        <span>Phone:</span>
-        {message.phone}
-      </div>
-      <div>
-        <span>Subject:</span>
-        {message.subject}
-      </div>
-      <div>
-        <span>Message:</span>
-        {message.message}
-      </div>
-      {markState ? (
-          <button className=" font-serif text-green-600 cursor-pointer text-right">
-            marked as read
-          </button>
-        ) : (
-          <button
-            onClick={markonclickHandler}
-            className=" font-serif text-blue-600 cursor-pointer text-right"
-          >
-            mark as read
-          </button>
-        )}
-    </div>
-  );
-};
+import MarkMessage from "./MarkMessage";
+const baseUrl = process.env.REACT_APP_SERVER_BASE_URL;
 
 const Admin = ({ authToken, setAuthToken }) => {
   //for login
@@ -90,8 +34,7 @@ const Admin = ({ authToken, setAuthToken }) => {
 
   const [about, setAbout] = useState({
     aboutRole: "",
-    description: "",
-    aboutImage: "",
+    description: ""
   });
 
   const [contactInfo, setContactInfo] = useState({
@@ -177,21 +120,6 @@ const Admin = ({ authToken, setAuthToken }) => {
     setReadMessages(data.contactFormDetail);
   };
 
-  // // const [markState, setMarkState] = useState(false);
-  // const markonclickHandler = async (id) => {
-  //   const dataRaw = await fetch(`${baseUrl}/contactformunreadmessage/${id}`, {
-  //     method: "PUT",
-  //     headers: {
-  //       "content-type": "application/json",
-  //       authToken: authToken,
-  //     },
-  //     body: JSON.stringify({ mark: true }),
-  //   });
-  //   const data = await dataRaw.json();
-  //   console.log(data);
-  //   // setMarkState(data.success);
-  // };
-
   const [unreadMessages, setUnReadMessages] = useState(null);
   const readallunreadmessages = async (e) => {
     e.preventDefault();
@@ -206,9 +134,6 @@ const Admin = ({ authToken, setAuthToken }) => {
   };
   return (
     <>
-      {/* {setInterval(() => {
-        markState && <div className="mt-28">message read successfully</div>;
-      }, 3000)} */}
       <div className="mt-28 p-3 flex flex-wrap">
         <button
           onClick={() => setActiveProfile(true)}
@@ -262,6 +187,8 @@ const Admin = ({ authToken, setAuthToken }) => {
       {/* modal */}
 
       <div className="h-fit flex justify-center ">
+        
+        {/* for updating profile details */}
         {activeProfile && (
           <Modal
             setActive={setActiveProfile}
@@ -273,6 +200,8 @@ const Admin = ({ authToken, setAuthToken }) => {
             endpoint="/updateProfileDetail"
           />
         )}
+
+        {/* for updating about section */}
         {activeAbout && (
           <Modal
             setActive={setActiveAbout}
@@ -285,6 +214,7 @@ const Admin = ({ authToken, setAuthToken }) => {
           />
         )}
 
+        {/* for updating contactinfo */}
         {activeContactInfo && (
           <Modal
             setActive={setActiveContactInfo}
@@ -296,6 +226,8 @@ const Admin = ({ authToken, setAuthToken }) => {
             endpoint="/updatecontactinfo"
           />
         )}
+
+        {/* for adding a new work */}
         {activeAddWork && (
           <Modal
             setActive={setActiveAddWork}
@@ -309,6 +241,7 @@ const Admin = ({ authToken, setAuthToken }) => {
         )}
       </div>
 
+      {/* for reading all the works */}
       {readWork && (
         <div className="flex flex-col mt-6 justify-center ">
           <div className="flex flex-wrap">
@@ -343,6 +276,7 @@ const Admin = ({ authToken, setAuthToken }) => {
         </div>
       )}
 
+      {/* for updating the work */}
       {updateWorkModal.activeUpdateWork && (
         <div className="flex justify-center">
           <form
@@ -380,65 +314,59 @@ const Admin = ({ authToken, setAuthToken }) => {
         </div>
       )}
 
+      {/* for reading all the messages */}
       {readMessages && (
         <>
-          <div className="p-8 flex flex-wrap font-mono">
+        <div className="flex flex-col items-center w-full">
+          <div className=" p-8 flex flex-wrap justify-center font-montserrat lg:w-3/4">
             {readMessages.map((message) => {
               return (
                 <div
                   key={message._id}
-                  className=" m-3 shadow-lg flex flex-col p-2"
+                  className=" m-3 shadow-lg flex flex-col p-2 border"
                 >
-                  <div className="text-2xl font-bold">
+                  <div className="text-xl font-bold">
                     <span>Name:</span>
-                    {message.name}
+                    &nbsp;  {message.name}
                   </div>
-                  <div>
-                    <span>Email:</span>
-                    {message.email}
+                  <div className="">
+                    <span className="">Email:</span>
+                    &nbsp;{message.email}
                   </div>
                   <div>
                     <span>Phone:</span>
-                    {message.phone}
+                    &nbsp;  {message.phone}
                   </div>
                   <div>
                     <span>Subject:</span>
-                    {message.subject}
+                    &nbsp;  {message.subject}
                   </div>
-                  <div>
+                  <div className=" font-oxygen font-bold text-gray-800 border-2">
                     <span>Message:</span>
-                    {message.message}
+                   &emsp;{message.message}
                   </div>
-                  {/* {markState ? (
-                    <button className=" font-serif text-green-600 cursor-pointer text-right">
-                      marked as read
-                    </button>
-                  ) : (
-                    <button
-                      onClick={() => markonclickHandler(message._id)}
-                      className=" font-serif text-blue-600 cursor-pointer text-right"
-                    >
-                      mark as read
-                    </button>
-                  )} */}
                 </div>
               );
             })}
           </div>
           <button
             className="mt-3 bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-            onClick={() => setReadMessages(null)}
+            onClick={() => setReadMessages(null)}cd 
           >
             Close
           </button>
+          </div>
         </>
       )}
+
+      {/* for reading all the unread messages */}
       {unreadMessages && (
         <>
           <div className="p-8 flex flex-wrap font-mono">
             {unreadMessages.map((message) => {
               return (
-                <Message authToken={authToken} message={message} />
+                // for marking the message as read
+                <MarkMessage authToken={authToken} message={message} />
               );
             })}
           </div>
@@ -455,92 +383,3 @@ const Admin = ({ authToken, setAuthToken }) => {
 };
 
 export default Admin;
-
-{
-  /* <div className="mt-28">
-      <div className="border-2">
-        <form onSubmit={onSumbmitHandler}>
-          <div>
-            <label htmlFor="title1">Title1</label>
-            <input
-              onChange={onChangeHandler}
-              className="border-2"
-              type="text"
-              name="title1"
-              value={profile.title1}
-              id="title1"
-            />
-          </div>
-          <div>
-            <label htmlFor="title2">Title2</label>
-            <input
-              onChange={onChangeHandler}
-              className="border-2"
-              type="text"
-              name="title2"
-              value={profile.title2}
-              id="titl2"
-            />
-          </div>
-          <div>
-            <label htmlFor="title3">Title3</label>
-            <input
-              onChange={onChangeHandler}
-              className="border-2"
-              type="text"
-              name="title3"
-              value={profile.title3}
-              id="title3"
-            />
-          </div>
-          <div>
-            <label htmlFor="facebook">facebookLink</label>
-            <input
-              onChange={onChangeHandler}
-              className="border-2"
-              type="text"
-              name="facebookUrl"
-              value={profile.facebookUrl}
-              id="facebook"
-            />
-          </div>
-          <label htmlFor="twitter">twitterLink</label>
-          <input
-            onChange={onChangeHandler}
-            className="border-2"
-            type="text"
-            name="twitterUrl"
-            value={profile.twitterUrl}
-            id="twitter"
-          />
-          <div>
-            <label htmlFor="instagram">instagramLink</label>
-            <input
-              onChange={onChangeHandler}
-              className="border-2"
-              type="text"
-              name="instagramUrl"
-              value={profile.instagramUrl}
-              id="instagram"
-            />
-          </div>
-          <div>
-            <label htmlFor="bgImage">BackGround Image</label>
-            <input
-              onChange={onChangeHandler}
-              className="border-2"
-              type="text"
-              name="backgroundImage"
-              value={profile.backgroundImage}
-              id="bgImage"
-            />
-          </div>
-          <div>
-            <button className="border-2" type="submit">
-              Update
-            </button>
-          </div>
-        </form>
-      </div>
-    </div> */
-}

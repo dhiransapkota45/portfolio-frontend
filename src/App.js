@@ -4,8 +4,12 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 //state
 import { useState, useEffect } from "react";
 
+//amimation on scroll library
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 //components
-import Navbar2 from "./components/Navbar/Navbar2";
+import Navbar2 from "./components/Navbar/Navbar";
 import Login from "./components/Login/Login";
 import Home from "./Home";
 import Admin from "./components/Admin/Admin";
@@ -15,6 +19,11 @@ import Admin from "./components/Admin/Admin";
 
 function App() {
   const [authToken, setAuthToken] = useState(false);
+  
+  //for animation
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
    return (
     <div className=" scroll-smooth">
       <Router>

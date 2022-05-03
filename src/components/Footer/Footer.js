@@ -4,8 +4,7 @@ const Footer = () => {
     return (
         <div className='flex flex-col items-center justify-center bg-slate-900 text-white'>
              <img
-            src="https://scontent.fsif1-1.fna.fbcdn.net/v/t1.6435-9/78583987_2911973955488791_6890974357246443520_n.jpg?_nc_cat=101&ccb=1-5&_nc_sid=174925&_nc_ohc=sw7OC1GhSn4AX_Xub24&_nc_ht=scontent.fsif1-1.fna&oh=00_AT-42ik806Km1ZY2n11CulOYIq1XYJ6Z00ktDJOgbAMl-Q&oe=6263DBE6"
-            alt="profile"
+            src="profile.jpg"
             srcSet=""
             className="w-16 rounded-full my-8 "
           />
@@ -23,7 +22,7 @@ const Footer = () => {
                 </div>
             </div>
 
-            <div className='align-center font-mono mb-8'>© 2019 DHIRAN SAPKOTA - ALL RIGHTS RESERVED</div>
+            <div className='align-center font-mono mb-8 text-center'>© 2022 TEJENDRA KANDEL - ALL RIGHTS RESERVED</div>
         </div>
     )
 }

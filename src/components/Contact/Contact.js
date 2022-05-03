@@ -5,7 +5,7 @@ import ContactInfo from './ContactInfo'
 const Contact = ({contactInfo}) => {
     return (
         <>
-            <div className='flex justify-around mt-6 mb-12 flex-wrap ' id='contact'>
+            <div data-aos="fade-up" className=' scroll-mt-48 flex justify-around mt-6 mb-12 flex-wrap ' id='contact'>
                 <ContactInfo contactInfo={contactInfo}/>
                 <ContactForm />
             </div>

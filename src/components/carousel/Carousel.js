@@ -8,6 +8,7 @@ const Carousel = () => {
             <Review />
 
         </div>
+        // <Review />
     )
 }
 

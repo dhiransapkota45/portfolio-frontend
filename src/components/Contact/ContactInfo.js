@@ -8,8 +8,8 @@ import { SiWeblate } from "react-icons/si"
 const ContactInfo = ({contactInfo}) => {
     return (
 
-        <div className='flex flex-col  w-72'>
-            <div className='text-black font-bold text-5xl my-8 font-sans'>
+        <div className='flex flex-col font-montserrat  w-72'>
+            <div className='text-black font-bold text-4xl my-8 '>
                 Contact Info
             </div>
             <div className='flex mb-4'>
