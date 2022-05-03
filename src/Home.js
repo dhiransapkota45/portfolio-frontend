@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import About from "./components/About/About";
-import Navbar from "./components/Navbar/Navbar";
+import Navbar from "./components/Navbar/FrontPage";
 import Work from "./components/Work/Work";
 // import Eachdata from "./components/Showcase/Eachdata";
 // import Showcase from "./components/Showcase/Showcase";
@@ -9,10 +9,9 @@ import Contact from "./components/Contact/Contact";
 import Map from "./components/Map/Map";
 import Footer from "./components/Footer/Footer";
 import useFetch from "./CustomHooks/useFetch";
+import Gallery from "./components/gallery/Gallery";
 
 const Home = () => {
-  const baseUrl = `http://localhost:3002`;
-
   //   different states to fetch data from server
   const [profileDetails, setProfileDetails] = useState();
   const [contactInfo, setContactInfo] = useState();
@@ -21,23 +20,12 @@ const Home = () => {
   const [workDetails, setWorkDetails] = useState();
 
   const fetchHandler = async (url) => {
-    const dataRaw = await fetch(`${baseUrl}${url}`);
+    const dataRaw = await fetch(
+      `${process.env.REACT_APP_SERVER_BASE_URL}${url}`
+    );
     const data = await dataRaw.json();
-    // setProfileDetails(data);
     return data;
   };
-
-  //   const profileData = useFetch("/getprofildetail");
-  //   console.log(profileData);
-  //   const aboutData = useFetch("/getabout");
-  //   console.log(aboutData);
-
-  //   const contactInfo = useFetch("/getcontactinfo");
-  //   console.log(contactInfo);
-  //   const reviewInfo = useFetch("/getreview");
-  //   console.log(reviewInfo);
-  //   const workDetails = useFetch("/getwork");
-  //   console.log(workDetails);
 
   useEffect(async () => {
     const data = await fetchHandler("/getprofildetail");
@@ -52,24 +40,25 @@ const Home = () => {
     setWorkDetails(data4.allWork);
   }, []);
 
-  console.log(
-    profileDetails,
-    contactInfo,
-    aboutDetails,
-    reviewInfo,
-    workDetails
-  );
-
   return (
     <div>
-      {profileDetails && <Navbar profileDetails={profileDetails} />}
-      {aboutDetails && <About aboutDetails={aboutDetails} />}
-      {workDetails && <Work workDetails={workDetails} />}
-      {/* <Showcase /> */}
-      <Carousel reviewInfo={reviewInfo} />
-      <Map />
-      {contactInfo && <Contact contactInfo={contactInfo} />}
-      <Footer />
+      {profileDetails ? (
+        <div>
+          {profileDetails && <Navbar profileDetails={profileDetails} />}
+          {aboutDetails && <About aboutDetails={aboutDetails} />}
+          {workDetails && <Work workDetails={workDetails} />}
+          {/* <Showcase /> */}
+          {/* {reviewInfo && <Carousel reviewInfo={reviewInfo} />} */}
+          <Map />
+          <Gallery />
+          {contactInfo && <Contact contactInfo={contactInfo} />}
+          <Footer />
+        </div>
+      ) : (
+        <div className="h-screen flex justify-center items-center text-4xl text-bold font-oxygen">
+          Loading...
+        </div>
+      )}
     </div>
   );
 };
