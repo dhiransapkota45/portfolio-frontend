@@ -47,11 +47,11 @@ const Navbar2 = () => {
         } py-4 md:px-10 px-7`}
       >
         <div
-          className={`w-16 rounded-full overflow-hidden cursor-pointer bg-white`}
+          className={`w-16 rounded-full overflow-hidden cursor-pointer bg-white  `}
         >
           <a href="#">
             <img
-              src="profile.jpg"
+              src="main_profile.jpg"
               alt="profile"
               srcSet=""
               className=" "

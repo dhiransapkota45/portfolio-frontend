@@ -1,5 +1,5 @@
 import {
-  FaYoutube,
+  FaGithub,
   FaFacebookF,
   FaTwitter,
   FaInstagramSquare,
@@ -11,7 +11,7 @@ const Navbar = ({ profileDetails }) => {
     <>
       <div
         style={{
-          backgroundImage: "url(/Untitled.jpeg)",
+          backgroundImage: "url(/backhd2.jpg)",
         }}
         className="h-screen bg-no-repeat bg-cover bg-center flex flex-col items-center justify-center"
       >
@@ -53,7 +53,7 @@ const Navbar = ({ profileDetails }) => {
             </div>
             <div className="mx-4 text-3xl cursor-pointer border-2 text-white bg-gray-900 border-white rounded-full hover:bg-white hover:text-black duration-300 p-2">
               <a target="_blank" href={profileDetails.youtubeUrl}>
-                <FaYoutube />
+                <FaGithub />
               </a>
             </div>
           </div>

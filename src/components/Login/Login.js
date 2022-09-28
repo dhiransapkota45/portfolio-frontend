@@ -8,10 +8,6 @@ const avatar =
   "https://raw.githubusercontent.com/sefyudem/Responsive-Login-Form/master/img/avatar.svg";
 
 
-
-
-
-
 const Login = ({authToken, setAuthToken}) => {
   const [credentials, setCredentials] = useState({
     username: "",
